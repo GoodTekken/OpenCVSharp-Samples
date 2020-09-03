@@ -1,4 +1,5 @@
 ﻿using OpenCvSharp;
+using System;
 
 namespace OpenCVSharpSample08
 {
@@ -70,30 +71,37 @@ namespace OpenCVSharpSample08
                         erodeDilateWindow.Image = dst;
                     });
 
-
-                for (; ; )
+                try
                 {
-                    openCloseTrackbar.Callback.DynamicInvoke(0);
-                    erodeDilateTrackbar.Callback.DynamicInvoke(0);
-
-                    var key = Cv2.WaitKey();
-
-                    if ((char)key == 27) // ESC
-                        break;
-
-                    switch ((char)key)
+                    for (; ; )
                     {
-                        case 'e':
-                            elementShape = MorphShapes.Ellipse;
+                        openCloseTrackbar.Callback.DynamicInvoke(0,null);
+                        erodeDilateTrackbar.Callback.DynamicInvoke(0,null);
+
+                        var key = Cv2.WaitKey();
+
+                        if ((char)key == 27) // ESC
                             break;
-                        case 'r':
-                            elementShape = MorphShapes.Rect;
-                            break;
-                        case 'c':
-                            elementShape = MorphShapes.Cross;
-                            break;
+
+                        switch ((char)key)
+                        {
+                            case 'e':
+                                elementShape = MorphShapes.Ellipse;
+                                break;
+                            case 'r':
+                                elementShape = MorphShapes.Rect;
+                                break;
+                            case 'c':
+                                elementShape = MorphShapes.Cross;
+                                break;
+                        }
                     }
                 }
+                catch(Exception ex)
+                {
+                    ;
+                }
+
 
                 openCloseWindow.Dispose();
                 erodeDilateWindow.Dispose();

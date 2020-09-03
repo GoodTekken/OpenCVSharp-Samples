@@ -20,8 +20,10 @@ namespace OpenCVSharpSample13
             // FastFeatureDetector, StarDetector, SIFT, SURF, ORB, BRISK, MSER, GFTTDetector, DenseFeatureDetector, SimpleBlobDetector
             // SURF = Speeded Up Robust Features
             var detector = SURF.Create(hessianThreshold: 400); //A good default value could be from 300 to 500, depending from the image contrast.
-            var keypoints1 = detector.Detect(img1);
-            var keypoints2 = detector.Detect(img2);
+            var keypoints1 = detector.Detect(img1,null);
+
+            var detector2 = SURF.Create(hessianThreshold: 400);
+            var keypoints2 = detector2.Detect(img2,null);
 
             // computing descriptors, BRIEF, FREAK
             // BRIEF = Binary Robust Independent Elementary Features

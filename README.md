@@ -23,3 +23,8 @@ A collection of samples about using OpenCV in .NET applications.
 - **Sample17**: How to detect faces using FisherFaceRecognizer.
 - **Sample18**: How to create a Simple OCR using OpenCVSharp.
 - **Sample19**: How to create a Simple BarcodeReader using OpenCVSharp.
+
+
+
+
+Sample13:+		$exception	{"尝试读取或写入受保护的内存。这通常指示其他内存已损坏。"}	System.AccessViolationException

@@ -35,8 +35,8 @@ namespace OpenCVSharpSample10
                             });
 
 
-                        brightnessTrackbar.Callback.DynamicInvoke(brightness);
-                        contrastTrackbar.Callback.DynamicInvoke(contrast);
+                        brightnessTrackbar.Callback.DynamicInvoke(brightness,null);
+                        contrastTrackbar.Callback.DynamicInvoke(contrast,null);
 
                         Cv2.WaitKey();
                     }
@@ -142,14 +142,14 @@ namespace OpenCVSharpSample10
                 // Scales and draws histogram
                 var scaledHistogram = (Mat)(histogram * (maxVal != 0 ? src.Rows / maxVal : 0.0));
 
-                using (var histogramImage = new Mat(new Size(src.Cols, src.Rows), MatType.CV_8UC3, Scalar.All(255)))
+                using (var histogramImage = new Mat(new Size(src.Cols,src.Rows), MatType.CV_8UC3, Scalar.All(255)))
                 {
                     var binW = (int)((double)src.Cols / histogramSize);
                     for (var j = 0; j < histogramSize; j++)
                     {
                         histogramImage.Rectangle(
-                            new Point(j * binW, histogramImage.Rows),
-                            new Point((j + 1) * binW, histogramImage.Rows - (int)(scaledHistogram.Get<float>(j))),
+                            new Point((j) * binW, histogramImage.Rows - (int)(scaledHistogram.Get<float>(j))),
+                            new Point((j + 1) * binW, histogramImage.Rows),
                             color,
                             -1);
                     }
